@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Story — BrewHaven</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="page-body">
+
+  <header class="site-header page-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-icon" aria-hidden="true">☕</span>
+        <div class="brand-text">
+          <span class="brand-name">BrewHaven</span>
+          <span class="brand-strapline">Where every cup tells a story</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html"       class="nav-link">Showcase</a>
+        <a href="about.html"       class="nav-link active">Our Story</a>
+        <a href="submission.html"  class="nav-link">Submission</a>
+        <a href="originality.html" class="nav-link">Originality</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <div class="page-content">
+
+      <div class="page-hero">
+        <p class="eyebrow">Web 3D Applications — H7006</p>
+        <h1>Our Story</h1>
+        <p>
+          An honest account of why I built a coffee shop in Three.js — the creative process, the technical decisions, the things that broke, and the things I'm genuinely proud of.
+        </p>
+      </div>
+
+      <section class="section-block" id="overview">
+        <p class="section-label">01</p>
+        <h2>The Concept</h2>
+
+        <p>
+          I spend a lot of time in coffee shops. Working, procrastinating, people-watching — there's something about that environment I've always found worth paying attention to. So when this assignment came around and I needed three models to showcase, it felt obvious to build BrewHaven around that world.
+        </p>
+        <p>
+          The name came from the idea of a coffee shop as a place you actually want to be — a haven, not just a caffeine stop. I wanted the whole project to feel like you're stepping inside a brand, not just clicking through a 3D demo. That shaped everything from the colour choices to the way I wrote the panel text.
+        </p>
+        <p>
+          The three objects I chose — an espresso machine, an coffee cup, and an ambient interior — each represent a different aspect of coffee shop culture. The machine is the craft, the drink is the product, and the interior is the atmosphere. I tried to let that logic drive the design decisions too.
+        </p>
+      </section>
+
+      <section class="section-block" id="models">
+        <p class="section-label">02</p>
+        <h2>The Craft</h2>
+
+        <p>
+          All three models are built procedurally in JavaScript using Three.js geometry — no external model files for the first two, and a GLB for the ambient interior. Every proportion, material value, and colour was a deliberate choice.
+        </p>
+
+        <h3>Espresso Machine</h3>
+        <p>
+          This was the most technically challenging model. I used BoxGeometry for the main body and built the control panel surface from 52 individual key meshes — each one placed by hand. The body material uses a custom GLSL ShaderMaterial I wrote myself, implementing Fresnel reflectance and an animated UV shimmer to get that brushed stainless steel look. The screen panel is a Canvas 2D texture I drew in code — it shows a pressure dial with tick marks and a live readout. The trackpad area uses MeshPhysicalMaterial with clearcoat set to 0.6, which gives it that polished glass-panel feel.
+        </p>
+
+        <h3>Coffee Cup</h3>
+        <p>
+          I wanted this model to have that tall, elegant proportions you get with a specialty café glass. I built it using LatheGeometry, defining my own 2D profile curve to get the slight taper and rounded base. The label texture is generated at runtime using the Canvas 2D API — it includes a shimmer gradient, glitter dots, and my own branding. The material is MeshPhysicalMaterial with clearcoat: 1.0 and near-zero roughness, so it reads as high-gloss. The gold straw is a thin cylinder with a sphere tip, both of which can be animated to extend using the controls panel.
+        </p>
+
+        <h3>Coffee Shop Interior</h3>
+        <p>
+          This one is more abstract than the other two. I loaded a GLB file of a sphere and used it to represent the ambient atmosphere of a café — the warm glow, the sense of being enclosed in a space that feels good. The DoubleSide material flag was important here because without it you'd get black patches where the inside faces weren't rendering. The Glow toggle uses a PointLight positioned in front of the mesh rather than emissive intensity, which gives a more natural, diffuse illumination. The phase toggle swaps between two pre-built geometry states in the GLB to change how the light falls — it's a loose interpretation of morning vs evening atmosphere in a café.
+        </p>
+      </section>
+
+      <section class="section-block" id="gallery">
+        <p class="section-label">02b</p>
+        <h2>Model Gallery</h2>
+        <p>
+          Screenshots taken during development showing
+          the three models at different stages and
+          from different camera angles.
+        </p>
+        <div style="display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1rem; margin-top: 1.5rem;">
+          <div style="background:#1a0f08; border-radius:8px;
+            overflow:hidden;
+            border:1px solid rgba(193,68,14,0.15);">
+            <img src="media/coffeemachine.png"
+              alt="Espresso Machine 3D model screenshot"
+              style="width:100%;height:140px;object-fit:cover;">
+            <p style="color:#8a7060;font-size:0.75rem;
+              padding:0.5rem;text-align:center;">Espresso Machine</p>
+          </div>
+          <div style="background:#1a0f08; border-radius:8px;
+            overflow:hidden;
+            border:1px solid rgba(193,68,14,0.15);">
+            <img src="media/coffeecup.png"
+              alt="Coffee Cup model screenshot"
+              style="width:100%;height:140px;object-fit:cover;">
+            <p style="color:#8a7060;font-size:0.75rem;
+              padding:0.5rem;text-align:center;">Coffee Cup</p>
+          </div>
+          <div style="background:#1a0f08; border-radius:8px;
+            overflow:hidden;
+            border:1px solid rgba(193,68,14,0.15);">
+            <img src="media/coffeeshop.png"
+              alt="BrewHaven Café 3D model screenshot"
+              style="width:100%;height:140px;object-fit:cover;">
+            <p style="color:#8a7060;font-size:0.75rem;
+              padding:0.5rem;text-align:center;">BrewHaven Café</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" id="technologies">
+        <p class="section-label">03</p>
+        <h2>Under the Hood</h2>
+
+        <p>
+          The app runs entirely in the browser with no server-side dependencies.
+        </p>
+
+        <div class="tag-row">
+          <span class="tech-tag">Three.js r128</span>
+          <span class="tech-tag">HTML5 Canvas API</span>
+          <span class="tech-tag">CSS3</span>
+          <span class="tech-tag">JavaScript ES6</span>
+          <span class="tech-tag">jQuery 3.7</span>
+          <span class="tech-tag">GLSL Shaders</span>
+          <span class="tech-tag">WebGL</span>
+          <span class="tech-tag">Google Fonts</span>
+          <span class="tech-tag">GLTFLoader</span>
+        </div>
+
+        <h3>Three.js</h3>
+        <p>
+          I chose Three.js over X3DOM because it has much more active development, better documentation, and proper support for physically-based materials. The scene graph approach — Scene, Camera, Renderer — maps cleanly to how I think about spatial design, and the MeshPhysicalMaterial with clearcoat support was essential for getting the latte cup material right.
+        </p>
+
+        <h3>Canvas 2D API</h3>
+        <p>
+          Rather than sourcing image files for labels and panel textures, I generated everything procedurally using the Canvas 2D API and wrapped the results in THREE.CanvasTexture. This means the app has zero external image dependencies and textures can be tweaked live in code. The espresso machine display and the latte label are both drawn this way.
+        </p>
+
+        <h3>GLSL Custom Shader</h3>
+        <p>
+          The espresso machine body uses a handwritten ShaderMaterial. The vertex shader passes UV coordinates and view-space normals to the fragment shader, which computes a Fresnel term and a time-animated sine-wave shimmer. I got the Fresnel formula from WebGL Fundamentals and then adapted it — I spent a while tuning the power value and shimmer frequency until it felt like metal rather than plastic.
+        </p>
+
+        <h3>jQuery</h3>
+        <p>
+          I used jQuery's fadeOut/fadeIn transition to smooth the model info update in the left panel when switching between brews. It's a small detail but it makes the content switch feel intentional rather than abrupt.
+        </p>
+
+        <h3>Deeper Understanding Features</h3>
+        <ol style="color:#8a7060; line-height:2;
+          padding-left:1.5rem; margin-top:1rem;">
+          <li><strong style="color:#FAF6F0;">Custom GLSL ShaderMaterial</strong> —
+          Fresnel reflectance with animated UV shimmer
+          on the espresso machine body. Written from
+          scratch in GLSL with time-based sine wave
+          displacement.</li>
+          <li><strong style="color:#FAF6F0;">Canvas 2D API Texture</strong> —
+          Pressure gauge display drawn procedurally
+          at runtime using HTML5 Canvas 2D API and
+          wrapped as THREE.CanvasTexture. Zero external
+          image dependencies.</li>
+          <li><strong style="color:#FAF6F0;">GLTFLoader + Blender GLB</strong> —
+          Coffee shop interior modelled in Blender 5.1
+          and exported as glTF 2.0 GLB. Loaded
+          asynchronously using THREE.GLTFLoader with
+          DoubleSide material flags and shadow casting.</li>
+          <li><strong style="color:#FAF6F0;">jQuery Animated Transitions</strong> —
+          Model info panel uses jQuery fadeOut/fadeIn
+          for smooth content switching between models.
+          Camera lerp animation using requestAnimationFrame
+          for smooth view transitions.</li>
+        </ol>
+      </section>
+
+      <section class="section-block" id="design">
+        <p class="section-label">04</p>
+        <h2>Design Decisions</h2>
+
+        <p>
+          The visual identity came from thinking about what independent coffee shops actually look like — not chain cafés, but the kind of place with handwritten menus and mismatched chairs.
+        </p>
+
+        <ul>
+          <li>
+            <strong>Colour palette:</strong> Deep espresso brown (#2C1A0E) for the header and footer because it reads immediately as a coffee brand. Terracotta (#C1440E) for interactive accents — it has that fired-clay, artisan quality that specialty coffee branding often reaches for. Off-white (#FAF6F0) for the background because pure white would feel clinical.
+          </li>
+          <li>
+            <strong>Typography:</strong> Playfair Display for headings because it has the same slightly editorial quality I see in good café branding — it feels considered. Lato for UI text because it's neutral enough to stay out of the way.
+          </li>
+          <li>
+            <strong>Panel layout:</strong> The three-column structure was inspired by professional 3D software interfaces — info on the left, canvas in the centre, controls on the right. It gives the app a tool-like feel rather than a webpage feel.
+          </li>
+          <li>
+            <strong>Glass panels:</strong> The side panels use backdrop-filter blur with semi-transparent backgrounds so the 3D model is subtly visible through them. On the coffee theme this reinforces the idea of a window into the space.
+          </li>
+          <li>
+            <strong>Chalkboard header:</strong> Making the header dark espresso brown rather than light was a deliberate decision to evoke a café chalkboard. The terracotta accent colour on nav links and active states reads like chalk marks.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section-block" id="testing">
+        <p class="section-label">05</p>
+        <h2>Testing</h2>
+
+        <p>
+          I tested across Chrome, Firefox, and Safari, and on both desktop and an iPhone. A few things needed fixing:
+        </p>
+
+        <ul>
+          <li>
+            <strong>Canvas resize:</strong> On window resize the renderer and camera aspect ratio update via the resize event listener in scene.js — without this the model stretched on mobile rotation.
+          </li>
+          <li>
+            <strong>Wireframe on GLB models:</strong> The moon GLB has nested child meshes. Using mesh.traverse() on the parent group ensures the wireframe flag reaches every child regardless of nesting depth.
+          </li>
+          <li>
+            <strong>Drag vs click conflict:</strong> The isDragging flag gets reset on mouseup and mouseleave so releasing the mouse outside the canvas doesn't lock the rotation.
+          </li>
+          <li>
+            <strong>GLB load timing:</strong> The GLTFLoader callback is async, so I had to add the loaded scene to currentMesh rather than to a returned group — otherwise the model was added to a group that had already been removed from the scene.
+          </li>
+          <li>
+            <strong>DoubleSide on the interior sphere:</strong> Without THREE.DoubleSide, the inside faces of the sphere mesh rendered black. Setting it in the loader callback fixed the visual immediately.
+          </li>
+        </ul>
+      </section>
+
+      <section class="section-block" id="demo">
+        <p class="section-label">06</p>
+        <h2>App Demo</h2>
+        <p>
+          A walkthrough of the BrewHaven 3D showcase —
+          switching between models, testing interactive
+          controls, and demonstrating the camera view system.
+        </p>
+        <div style="margin-top: 1.5rem; border-radius: 12px;
+          overflow: hidden; background: #1a0f08;
+          padding: 2rem; text-align: center;
+          border: 1px solid rgba(193,68,14,0.2);">
+          <p style="color: #C1440E; font-family: 'Playfair Display', serif;
+            font-size: 1.1rem; margin-bottom: 0.5rem;">
+            Screen Recording
+          </p>
+          <video id="demo-video" width="100%" controls
+            style="border-radius:8px; margin-top:1rem;
+            max-height: 400px;">
+            <source src="media/demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+
+      <section class="section-block" id="accessibility">
+        <p class="section-label">07</p>
+        <h2>Accessibility</h2>
+
+        <ul>
+          <li>
+            All interactive elements (buttons, toggle switches, links, product cards) have visible <code>:focus-visible</code> outlines using the terracotta accent colour so keyboard users can track focus.
+          </li>
+          <li>
+            Decorative elements (background glow, drag-hint icon, card thumbnails) are marked with <code>aria-hidden="true"</code> so screen readers skip them.
+          </li>
+          <li>
+            Semantic HTML is used throughout — <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;h1&gt;</code>–<code>&lt;h2&gt;</code> — giving the document a logical structure for assistive technologies.
+          </li>
+          <li>
+            Product card buttons have descriptive <code>aria-label</code> attributes so screen readers announce "Load Espresso Machine model" rather than reading the visual card text out of context.
+          </li>
+          <li>
+            Colour contrast between the body text (#2C1A0E) and the warm background (#FAF6F0) exceeds the WCAG AA ratio of 4.5:1. Interactive focus outlines use terracotta (#C1440E) which remains visible against both light and dark surfaces.
+          </li>
+          <li>
+            Font sizes are set in relative units (<code>rem</code> / <code>em</code>) so they scale with the user's browser font size setting.
+          </li>
+        </ul>
+      </section>
+
+      <a href="index.html" class="back-link">← Back to the showcase</a>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p class="footer-brand">BrewHaven</p>
+    <p class="footer-address">47 Roast Lane, Brighton</p>
+    <p class="footer-copy">© 2026 BrewHaven. All rights reserved.</p>
+  </footer>
+
+  <button id="back-top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    style="position:fixed;bottom:2rem;right:2rem;
+    background:#C1440E;color:white;border:none;
+    border-radius:50%;width:44px;height:44px;
+    font-size:1.2rem;cursor:pointer;display:none;
+    z-index:999;" aria-label="Back to top">↑</button>
+  <script>
+  window.addEventListener('scroll',function(){
+    var btn = document.getElementById('back-top');
+    if(btn) btn.style.display =
+      window.scrollY > 300 ? 'block' : 'none';
+  });
+  </script>
+
+</body>
+</html>

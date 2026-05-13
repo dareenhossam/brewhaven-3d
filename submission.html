@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submission — BrewHaven</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="page-body">
+
+  <header class="site-header page-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-icon" aria-hidden="true">☕</span>
+        <div class="brand-text">
+          <span class="brand-name">BrewHaven</span>
+          <span class="brand-strapline">Where every cup tells a story</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html"       class="nav-link">Showcase</a>
+        <a href="about.html"       class="nav-link">Our Story</a>
+        <a href="submission.html"  class="nav-link active">Submission</a>
+        <a href="originality.html" class="nav-link">Originality</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="page-wrap">
+    <div class="page-content">
+
+      <div class="page-hero">
+        <p class="eyebrow">Web 3D Applications — H7006</p>
+        <h1>Submission Details</h1>
+        <p>
+          Links and evidence required for marking, including the live ITS URL, GitHub repository, and a deeper understanding statement.
+        </p>
+      </div>
+
+      <section class="section-block">
+        <p class="section-label">Submission Info</p>
+        <h2>Project Details</h2>
+
+        <table class="submission-table" aria-label="Submission details">
+          <tbody>
+
+            <tr>
+              <th scope="row">Student Name</th>
+              <td>Dareen Elsokary</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Student Number</th>
+              <td>293325</td>
+            </tr>
+
+            <tr>
+              <th scope="row">University Email</th>
+              <td><a href="mailto:dae26@sussex.ac.uk">dae26@sussex.ac.uk</a></td>
+            </tr>
+
+            <tr>
+              <th scope="row">Module</th>
+              <td>Web 3D Applications — H7006</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Year</th>
+              <td>2026</td>
+            </tr>
+
+            <tr>
+              <th scope="row">Project Title</th>
+              <td>BrewHaven — 3D Coffee Showcase</td>
+            </tr>
+
+            <tr>
+              <th scope="row">VS Code Launch</th>
+              <td>The application is packaged as a static web app and launched locally through VS Code Live Server on port 5500.</td>
+            </tr>
+
+            <tr>
+              <th scope="row">ITS Web Server URL</th>
+              <td>[https://users.sussex.ac.uk/~dae26/]</td>
+            </tr>
+
+            <tr>
+              <th scope="row">GitHub Codebase URL</th>
+              <td>
+                <a href="https://github.com/dareenhossam/brewhaven-3d" target="_blank">
+                  https://github.com/dareenhossam/brewhaven-3d
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">GitHub Models URL</th>
+              <td>
+                <a href="https://github.com/dareenhossam/brewhaven-3d/tree/main/models" target="_blank">
+                  https://github.com/dareenhossam/brewhaven-3d/tree/main/models
+                </a>
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">3D Models Location</th>
+              <td>
+                The espresso machine and coffee cup with cookies are built procedurally in <code>js/scene.js</code>. The coffee shop interior loads from <code>models/coffeeshop.glb</code> via GLTFLoader.
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">Deeper Understanding Statement</th>
+              <td>
+                This application demonstrates deeper understanding through four key implementations beyond the core labs: (1) A custom GLSL ShaderMaterial implementing Fresnel reflectance with animated UV shimmer on the espresso machine — written entirely from scratch in GLSL. (2) A Canvas 2D API texture generating a pressure gauge display procedurally at runtime, wrapped as <code>THREE.CanvasTexture</code> with zero external image dependencies. (3) GLTFLoader integration loading a Blender 5.1-exported GLB file asynchronously with DoubleSide material handling and dynamic café lighting. (4) jQuery fadeOut/fadeIn transitions for smooth model panel switching combined with requestAnimationFrame-based camera lerp animation for smooth view transitions.
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">Testing Evidence</th>
+              <td>
+                Tested on Chrome 124 — all features working. Tested on Safari 17 — audio requires user gesture first click. Tested on Firefox 125 — minor font rendering difference. Peer tested by classmate — confirmed drag rotation, wireframe, colour switcher and camera views all function correctly. ITS server tested — application loads without errors.
+                <br><br>
+                See also the <a href="about.html#testing">Testing section of the Our Story page</a> for the full browser and functionality test tables.
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+      </section>
+
+      <a href="index.html" class="back-link">← Back to the showcase</a>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <p class="footer-brand">BrewHaven</p>
+    <p class="footer-address">47 Roast Lane, Brighton</p>
+    <p class="footer-copy">© 2026 BrewHaven. All rights reserved.</p>
+  </footer>
+
+  <button id="back-top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    style="position:fixed;bottom:2rem;right:2rem;
+    background:#C1440E;color:white;border:none;
+    border-radius:50%;width:44px;height:44px;
+    font-size:1.2rem;cursor:pointer;display:none;
+    z-index:999;" aria-label="Back to top">↑</button>
+  <script>
+  window.addEventListener('scroll',function(){
+    var btn = document.getElementById('back-top');
+    if(btn) btn.style.display =
+      window.scrollY > 300 ? 'block' : 'none';
+  });
+  </script>
+
+</body>
+</html>

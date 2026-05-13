@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrewHaven — 3D Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="app-body">
+
+  <a href="#main-content" class="skip-link"
+    style="position:absolute; top:-40px; left:0;
+    background:#C1440E; color:white; padding:8px;
+    z-index:999; border-radius:0 0 4px 0;
+    transition: top 0.3s;"
+    onfocus="this.style.top='0'"
+    onblur="this.style.top='-40px'">
+    Skip to main content
+  </a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-icon" aria-hidden="true">☕</span>
+        <div class="brand-text">
+          <span class="brand-name">BrewHaven</span>
+          <span class="brand-strapline">Where every cup tells a story</span>
+        </div>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html"       class="nav-link active">Showcase</a>
+        <a href="about.html"       class="nav-link">Our Story</a>
+        <a href="submission.html"  class="nav-link">Submission</a>
+        <a href="originality.html" class="nav-link">Originality</a>
+      </nav>
+    </div>
+  </header>
+
+  <div id="threejs-container" role="application" aria-label="3D model viewer — drag to rotate">
+    <p class="canvas-drag-hint">⟳ drag to rotate &nbsp;|&nbsp; scroll to zoom</p>
+  </div>
+
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <div class="overlay" aria-hidden="false" id="main-content">
+
+    <div class="main-row">
+
+      <aside class="panel panel-left" aria-label="Model information">
+        <div class="panel-inner">
+          <p class="eyebrow">— Featured Brew —</p>
+          <h1 class="model-title" id="model-title">Espresso Machine</h1>
+          <p class="model-sub" id="model-subtitle">The Workhorse</p>
+          <div class="gold-rule"></div>
+          <p class="model-desc" id="model-description">
+            A procedural espresso machine built from BoxGeometry for the chassis, featuring a custom GLSL shimmer shader on the body. Includes individually modelled control buttons and a clearcoat trackpad.
+          </p>
+          <ul class="fact-list" id="product-media">
+            <li><span aria-hidden="true">—</span> Body: GLSL fresnel shimmer shader</li>
+            <li><span aria-hidden="true">—</span> Display: Canvas 2D panel texture</li>
+            <li><span aria-hidden="true">—</span> Buttons: 52 individual BoxGeometry meshes</li>
+            <li><span aria-hidden="true">—</span> Trackpad: MeshPhysical clearcoat</li>
+          </ul>
+          <div class="model-preview-img" id="model-preview-img"
+            style="margin: 1rem 0; border-radius: 8px;
+            overflow: hidden; display: none;">
+            <img id="preview-img" src="" alt="Model preview"
+              style="width:100%; height:140px;
+              object-fit:cover; border-radius:8px;">
+          </div>
+          <button class="btn-explore" onclick="triggerAnimation()" aria-label="Start spin animation">
+            Explore 3D <span class="btn-arrow" aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </aside>
+
+      <div class="panel-center" aria-label="3D viewport — drag to rotate"></div>
+
+      <aside class="panel panel-right" aria-label="3D controls">
+        <div class="panel-inner">
+
+          <div class="ctrl-block">
+            <h2 class="ctrl-heading">Controls</h2>
+            <button id="btn-wireframe" class="ctrl-btn wide-btn" onclick="toggleWireframe()">Wireframe</button>
+            <button id="btn-spin"      class="ctrl-btn wide-btn" onclick="triggerAnimation()">Auto Spin</button>
+            <button id="btn-light"     class="ctrl-btn wide-btn" onclick="toggleLight()">Lights</button>
+            <button                    class="ctrl-btn wide-btn" onclick="resetCamera()">Reset Camera</button>
+            <button id="btn-audio" class="ctrl-btn wide-btn" onclick="toggleAudio()">☕ Ambience: Off</button>
+          </div>
+
+          <div class="ctrl-block">
+            <h2 class="ctrl-heading">Camera Views</h2>
+            <div class="view-grid">
+              <button class="ctrl-btn view-btn" onclick="setCameraView('front')">Front</button>
+              <button class="ctrl-btn view-btn" onclick="setCameraView('side')">Side</button>
+              <button class="ctrl-btn view-btn" onclick="setCameraView('top')">Top</button>
+              <button class="ctrl-btn view-btn" onclick="setCameraView('closeup')">Close Up</button>
+            </div>
+          </div>
+
+          <div id="laptop-controls" style="display:none">
+            <div class="ctrl-block">
+              <h2 class="ctrl-heading">Espresso Machine</h2>
+              <button id="btn-lid"    class="ctrl-btn wide-btn" onclick="toggleLaptopLid()">Steam Wand: Down</button>
+              <button id="btn-screen" class="ctrl-btn wide-btn" onclick="toggleScreenGlow()">Display: Dim</button>
+              <button id="btn-keys"   class="ctrl-btn wide-btn" onclick="toggleKeyboardLight()">Buttons: Off</button>
+              <button id="btn-pour"   class="ctrl-btn wide-btn" onclick="pourCoffee()">☕ Pour Coffee</button>
+            </div>
+          </div>
+
+          <div id="lipgloss-controls" style="display:none">
+            <div class="ctrl-block">
+              <h2 class="ctrl-heading">Coffee Cup</h2>
+              <div class="swatch-row">
+                <button class="colour-circle" style="background:#5C3520" onclick="changeGlossColour('#5C3520')" aria-label="Espresso"></button>
+                <button class="colour-circle" style="background:#C4A06A" onclick="changeGlossColour('#C4A06A')" aria-label="Latte"></button>
+                <button class="colour-circle" style="background:#5A7A3A" onclick="changeGlossColour('#5A7A3A')" aria-label="Matcha"></button>
+                <button class="colour-circle" style="background:#C47A20" onclick="changeGlossColour('#C47A20')" aria-label="Caramel"></button>
+              </div>
+              <button id="btn-stir" class="ctrl-btn wide-btn" onclick="stirCoffee()">Stir Coffee ☕</button>
+            </div>
+          </div>
+
+          <div id="moon-controls" style="display:none">
+            <div class="ctrl-block">
+              <h2 class="ctrl-heading">BrewHaven Café</h2>
+              <button id="btn-glow"        class="ctrl-btn wide-btn" onclick="toggleMoonGlow()">Warm Glow: Off</button>
+              <button id="btn-phase"       class="ctrl-btn wide-btn" onclick="cycleMoonPhase()">View: Outside</button>
+              <button id="btn-cafe-lights" class="ctrl-btn wide-btn" onclick="toggleCafeLights()">Lights: On</button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+
+    <div class="carousel" role="navigation" aria-label="Product selector" aria-live="polite">
+      <div class="carousel-inner">
+
+        <button class="product-card btn-product" onclick="loadModel('laptop', event)" data-model="laptop" aria-label="Load Espresso Machine model">
+          <span class="card-dot dot-laptop" aria-hidden="true"></span>
+          <div class="card-info">
+            <p class="card-name">Espresso Machine</p>
+            <p class="card-tag">The Workhorse</p>
+          </div>
+        </button>
+
+        <button class="product-card btn-product" onclick="loadModel('lipgloss', event)" data-model="lipgloss" aria-label="Load Coffee Cup model">
+          <span class="card-dot dot-gloss" aria-hidden="true"></span>
+          <div class="card-info">
+            <p class="card-name">Coffee Cup</p>
+            <p class="card-tag">The Classic</p>
+          </div>
+        </button>
+
+        <button class="product-card btn-product" onclick="loadModel('moon', event)" data-model="moon" aria-label="Load BrewHaven Café model">
+          <span class="card-dot dot-moon" aria-hidden="true"></span>
+          <div class="card-info">
+            <p class="card-name">BrewHaven Café</p>
+            <p class="card-tag">The Experience</p>
+          </div>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+  <script src="js/scene.js"></script>
+
+  <audio id="cafe-audio" loop preload="auto">
+    <source src="audio/coffeeshopambience.wav" type="audio/wav">
+  </audio>
+  <audio id="machine-audio" preload="auto">
+    <source src="audio/coffeemachine.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="stir-audio" preload="auto">
+    <source src="audio/spoonstirring.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    var modelSubtitles = {
+      laptop:   'The Workhorse',
+      lipgloss: 'The Classic',
+      lipgloss: 'The Classic',
+      moon:     'The Experience'
+    };
+
+    var previewImages = {
+      laptop: '',
+      lipgloss: '',
+      moon: ''
+    };
+
+    var _origLoad = window.loadModel;
+    window.loadModel = function(name, event) {
+      _origLoad(name, event);
+      var el = document.getElementById('model-subtitle');
+      if (el) el.textContent = modelSubtitles[name] || '';
+      var previewEl = document.getElementById('model-preview-img');
+      var imgEl = document.getElementById('preview-img');
+      if (previewImages[name]) {
+        imgEl.src = previewImages[name];
+        previewEl.style.display = 'block';
+      } else {
+        previewEl.style.display = 'none';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var defaultCard = document.querySelector('[data-model="laptop"]');
+      if (defaultCard) defaultCard.classList.add('active');
+    });
+  </script>
+
+  <script>
+    var audioOn = false;
+    function toggleAudio() {
+      audioOn = !audioOn;
+      var cafeAudio = document.getElementById('cafe-audio');
+      var machineAudio = document.getElementById('machine-audio');
+      var stirAudio = document.getElementById('stir-audio');
+      var targetAudio = null;
+
+      if (window.currentModel === 'laptop') {
+        targetAudio = machineAudio;
+      } else if (window.currentModel === 'lipgloss') {
+        targetAudio = stirAudio;
+      } else if (window.currentModel === 'moon') {
+        targetAudio = cafeAudio;
+      }
+
+      [cafeAudio, machineAudio, stirAudio].forEach(function(audio) {
+        if (audio && audio !== targetAudio) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+
+      if (!targetAudio) {
+        audioOn = false;
+        document.getElementById('btn-audio').textContent = '☕ Ambience: Off';
+        document.getElementById('btn-audio').classList.remove('active');
+        return;
+      }
+
+      if (audioOn) {
+        targetAudio.loop = true;
+        targetAudio.currentTime = 0;
+        var promise = targetAudio.play();
+        if (promise !== undefined) {
+          promise.catch(function() {
+            audioOn = false;
+            document.getElementById('btn-audio').textContent = '☕ Ambience: Off';
+            document.getElementById('btn-audio').classList.remove('active');
+          });
+        }
+      } else {
+        targetAudio.pause();
+        targetAudio.currentTime = 0;
+      }
+
+      document.getElementById('btn-audio').textContent =
+        audioOn ? '☕ Ambience: On' : '☕ Ambience: Off';
+      document.getElementById('btn-audio')
+        .classList.toggle('active', audioOn);
+    }
+  </script>
+
+</body>
+</html>
