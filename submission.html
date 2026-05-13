@@ -24,9 +24,9 @@
         </div>
       </a>
       <nav class="main-nav">
-        <a href="index.html"       class="nav-link">Showcase</a>
-        <a href="about.html"       class="nav-link">Our Story</a>
-        <a href="submission.html"  class="nav-link active">Submission</a>
+        <a href="index.html" class="nav-link">Showcase</a>
+        <a href="about.html" class="nav-link">Our Story</a>
+        <a href="submission.html" class="nav-link active">Submission</a>
         <a href="originality.html" class="nav-link">Originality</a>
       </nav>
     </div>
@@ -82,12 +82,14 @@
 
             <tr>
               <th scope="row">VS Code Launch</th>
-              <td>The application is packaged as a static web app and launched locally through VS Code Live Server on port 5500.</td>
+              <td>
+                The application is packaged as a static web app and launched locally through VS Code Live Server on port 5500.
+              </td>
             </tr>
 
             <tr>
               <th scope="row">ITS Web Server URL</th>
-              <td>[https://users.sussex.ac.uk/~dae26/]</td>
+              <td><a href="https://users.sussex.ac.uk/~dae26/" target="_blank">https://users.sussex.ac.uk/~dae26/</a></td>
             </tr>
 
             <tr>
@@ -111,23 +113,43 @@
             <tr>
               <th scope="row">3D Models Location</th>
               <td>
-                The espresso machine and coffee cup with cookies are built procedurally in <code>js/scene.js</code>. The coffee shop interior loads from <code>models/coffeeshop.glb</code> via GLTFLoader.
+                The espresso machine and coffee cup with cookies are built procedurally in
+                <code>js/scene.js</code>. The coffee shop interior loads from
+                <code>models/coffeeshop.glb</code> via GLTFLoader.
               </td>
             </tr>
 
             <tr>
               <th scope="row">Deeper Understanding Statement</th>
               <td>
-                This application demonstrates deeper understanding through four key implementations beyond the core labs: (1) A custom GLSL ShaderMaterial implementing Fresnel reflectance with animated UV shimmer on the espresso machine — written entirely from scratch in GLSL. (2) A Canvas 2D API texture generating a pressure gauge display procedurally at runtime, wrapped as <code>THREE.CanvasTexture</code> with zero external image dependencies. (3) GLTFLoader integration loading a Blender 5.1-exported GLB file asynchronously with DoubleSide material handling and dynamic café lighting. (4) jQuery fadeOut/fadeIn transitions for smooth model panel switching combined with requestAnimationFrame-based camera lerp animation for smooth view transitions.
+                This application demonstrates deeper understanding through four key implementations
+                beyond the core labs:
+                (1) A custom GLSL ShaderMaterial implementing Fresnel reflectance with animated UV
+                shimmer on the espresso machine — written entirely from scratch in GLSL.
+                (2) A Canvas 2D API texture generating a pressure gauge display procedurally at runtime,
+                wrapped as <code>THREE.CanvasTexture</code> with zero external image dependencies.
+                (3) GLTFLoader integration loading a Blender 5.1-exported GLB file asynchronously
+                with DoubleSide material handling and dynamic café lighting.
+                (4) jQuery fadeOut/fadeIn transitions for smooth model panel switching combined with
+                requestAnimationFrame-based camera lerp animation for smooth view transitions.
               </td>
             </tr>
 
             <tr>
               <th scope="row">Testing Evidence</th>
               <td>
-                Tested on Chrome 124 — all features working. Tested on Safari 17 — audio requires user gesture first click. Tested on Firefox 125 — minor font rendering difference. Peer tested by classmate — confirmed drag rotation, wireframe, colour switcher and camera views all function correctly. ITS server tested — application loads without errors.
+                Tested on Chrome 124 — all features working.
+                Tested on Safari 17 — audio requires user gesture first click.
+                Tested on Firefox 125 — minor font rendering difference.
+                Peer tested by classmate — confirmed drag rotation, wireframe,
+                colour switcher and camera views all function correctly.
+                ITS server tested — application loads without errors.
+
                 <br><br>
-                See also the <a href="about.html#testing">Testing section of the Our Story page</a> for the full browser and functionality test tables.
+
+                See also the
+                <a href="about.html#testing">Testing section of the Our Story page</a>
+                for the full browser and functionality test tables.
               </td>
             </tr>
 
@@ -152,13 +174,16 @@
     background:#C1440E;color:white;border:none;
     border-radius:50%;width:44px;height:44px;
     font-size:1.2rem;cursor:pointer;display:none;
-    z-index:999;" aria-label="Back to top">↑</button>
+    z-index:999;"
+    aria-label="Back to top">↑</button>
+
   <script>
-  window.addEventListener('scroll',function(){
-    var btn = document.getElementById('back-top');
-    if(btn) btn.style.display =
-      window.scrollY > 300 ? 'block' : 'none';
-  });
+    window.addEventListener('scroll', function () {
+      var btn = document.getElementById('back-top');
+      if (btn) {
+        btn.style.display = window.scrollY > 300 ? 'block' : 'none';
+      }
+    });
   </script>
 
 </body>
